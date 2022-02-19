@@ -1,0 +1,3 @@
+C:/Users/Kot/CLionProjects/HW19/png_file/cmake-build-debug/CMakeFiles/png_file.dir
+C:/Users/Kot/CLionProjects/HW19/png_file/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Kot/CLionProjects/HW19/png_file/cmake-build-debug/CMakeFiles/rebuild_cache.dir
