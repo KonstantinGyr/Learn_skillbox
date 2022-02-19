@@ -3,6 +3,17 @@
 #include <string>
 #include <fstream>
 
+std::string rightAdd( std::string& add){
+    std::string newAdd;
+    for(char symbol : add) {
+        if (symbol == '\\'){
+            newAdd.push_back('\\');
+        }
+        newAdd.push_back(symbol);
+    }
+    return newAdd;
+}
+
 bool readQuestion(int sector) {
     std::string num = std::to_string(sector);
     std::string address("C:\\files\\.txt");
