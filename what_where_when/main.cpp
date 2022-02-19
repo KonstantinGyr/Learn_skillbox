@@ -14,13 +14,17 @@ std::string rightAdd( std::string& add){
     return newAdd;
 }
 
-bool readQuestion(int sector) {
+bool readQuestion(int sector,std::string address) {
     std::string num = std::to_string(sector);
-    std::string address("C:\\files\\.txt");
+             //("C:\\files\\.txt");
+    address += '\\';
+    address += '\\';
+    address += num;
+    address += ".txt";
     std::ifstream question;
     std::string word;
     std::string answer;
-    question.open(address.insert(9, num), std::ios::binary);
+    question.open(address, std::ios::binary);
     while (!question.eof()) {
         question >> word;
         if (word == "@")break;
@@ -52,6 +56,9 @@ bool readQuestion(int sector) {
     }
     int main() {
         std::string quest;
+        std::string address;
+        std::cout << "Input address folder with questions : " << std::endl;
+        std::cin >> address;
         int gamers = 0;
         int viewers = 0;
         int offset;
@@ -61,7 +68,7 @@ bool readQuestion(int sector) {
             std::cout << "Please, spin the dram!";
             std::cin >> offset;
             curSector = sectorCorr(curSector, offset, drum);
-            if (readQuestion(curSector)) {
+            if (readQuestion(curSector,rightAdd(address))) {
                 gamers++;
                 std::cout << "Answer is true!" << std::endl;
             } else {
