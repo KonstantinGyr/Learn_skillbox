@@ -2,16 +2,6 @@
 #include <fstream>
 #include <string>
 
-std::string rightAdd( std::string& add){
-    std::string newAdd;
-    for(char symbol : add) {
-        if (symbol == '\\'){
-            newAdd.push_back('\\');
-        }
-        newAdd.push_back(symbol);
-    }
-    return newAdd;
-}
 int main() {
     std::ifstream rain;
     std::string address;
@@ -22,7 +12,7 @@ int main() {
             std::cout << "File extension is not \"png\"" << std::endl;
             continue;
         }
-        rain.open(rightAdd(address), std::ios::binary);
+        rain.open((address), std::ios::binary);
         std::cout << (!(rain.is_open()) ? "Not correct address" : "Ok address");
         std::cout << std::endl;
     }
