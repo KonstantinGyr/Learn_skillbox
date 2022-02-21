@@ -2,17 +2,6 @@
 #include <fstream>
 #include <string>
 
-std::string rightAdd( std::string& add){
-    std::string newAdd;
-    for(char symbol : add) {
-        if (symbol == '\\'){
-            newAdd.push_back('\\');
-        }
-        newAdd.push_back(symbol);
-    }
-    return newAdd;
-}
-
 int main() {
     std::ifstream list;
     std::string name1,name2,data,dataM ;
@@ -21,7 +10,7 @@ int main() {
     do {
         std::cout << "Input address your file : " << std::endl;
         std::cin >> address;
-        list.open(rightAdd(address));
+        list.open(address);
         std::cout << ((list.is_open()) ? "Ok address " : "Not correct address ");
         std::cout << std::endl;
     }
