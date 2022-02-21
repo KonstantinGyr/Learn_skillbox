@@ -10,11 +10,7 @@ int main() {
     do {
         std::cout << "Input address your file : " << std::endl;
         std::cin >> address;
-        for (char symbol: address) {
-            if (symbol == '\\')trueAdd.push_back('\\');
-            trueAdd.push_back(symbol);
-        }
-        text.open(trueAdd, std::ios::binary);
+        text.open(address, std::ios::binary);
         std::cout << ((!text.is_open()) ? "Not correct address" : "Ok address");
         std::cout << std::endl;
         trueAdd.clear();
