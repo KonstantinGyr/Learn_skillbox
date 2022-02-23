@@ -3,28 +3,19 @@
 #include <string>
 #include <fstream>
 
-std::string rightAdd( std::string& add){
-    std::string newAdd;
-    for(char symbol : add) {
-        if (symbol == '\\'){
-            newAdd.push_back('\\');
-        }
-        newAdd.push_back(symbol);
-    }
-    return newAdd;
-}
-
-bool readQuestion(int sector,std::string address) {
+int readQuestion(int sector,std::string address) {
     std::string num = std::to_string(sector);
-             //("C:\\files\\.txt");
-    address += '\\';
     address += '\\';
     address += num;
     address += ".txt";
     std::ifstream question;
     std::string word;
     std::string answer;
-    question.open(address, std::ios::binary);
+    question.open(address);
+    if(!question.is_open()){
+        std::cout<<"Wrong address entered.";
+        return 0;
+    }
     while (!question.eof()) {
         question >> word;
         if (word == "@")break;
@@ -37,8 +28,9 @@ bool readQuestion(int sector,std::string address) {
     if (word != answer) {
         std::cout << "Answer is false!" << std::endl;
         std::cout << "Right answer is : " << word << std::endl;
+        return 2;
     }
-    return (word == answer);
+    return 1;
 }
     int sectorCorr(int &cur, int offset, std::vector<int> &drum) {
         cur += offset;
@@ -68,18 +60,24 @@ bool readQuestion(int sector,std::string address) {
             std::cout << "Please, spin the dram!";
             std::cin >> offset;
             curSector = sectorCorr(curSector, offset, drum);
-            if (readQuestion(curSector,rightAdd(address))) {
+            int run=readQuestion(curSector,address);
+            if(run==0){
+                return 0;
+            }
+           else if (run==1) {
                 gamers++;
                 std::cout << "Answer is true!" << std::endl;
-            } else {
-                viewers++;
             }
+          else {
+              viewers++;
+          }
             std::cout << "Score " << gamers << " : " << viewers << std::endl;
         }
         while (gamers < 6 && viewers< 6);
         if (gamers > viewers) {
             std::cout << "Gamer won!" << std::endl;
-        } else {
+        }
+        else {
             std::cout << "Viewer won!" << std::endl;
         }
         return 0;
