@@ -57,7 +57,7 @@ int readQuestion(int sector,std::string address) {
         int curSector = 1;
         std::vector<int> drum(13, 0);
          do{
-            std::cout << "Please, spin the dram!";
+            std::cout << "Please, spin the drum!";
             std::cin >> offset;
             curSector = sectorCorr(curSector, offset, drum);
             int run=readQuestion(curSector,address);
